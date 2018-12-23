@@ -1,3 +1,7 @@
+## [0.0.4] - 2018-12-23
+
+* Correcting pubspec.yaml
+
 ## [0.0.3] - 2018-12-23
 
 * Added document to code.
