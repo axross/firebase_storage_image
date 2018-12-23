@@ -12,6 +12,8 @@ import 'package:flutter/painting.dart'
         PaintingBinding;
 
 /// Fetches the given URL from Firebase Cloud Storage, associating it with the given scale.
+///
+/// By default this will allocate 1MB for download the image. If you want to deal with larger file than 1MB, you have to set `maxSizeBytes` with the proper value.
 class FirebaseStorageImage extends ImageProvider<FirebaseStorageImage> {
   /// The URL from which the image will be fetched.
   final Uri storageLocation;
@@ -24,11 +26,11 @@ class FirebaseStorageImage extends ImageProvider<FirebaseStorageImage> {
 
   /// Creates an object that fetches the image from Firebase Cloud Storage.
   ///
-  /// [storageLocation] must be a [Uri] starting with `gs://`. [maxSizeBytes] is 2MB by default.
+  /// [storageLocation] must be a [Uri] starting with `gs://`. [maxSizeBytes] is 1MB by default.
   FirebaseStorageImage(
     this.storageLocation, {
     this.scale = 1.0,
-    this.maxSizeBytes = 1000 * 1000 * 2,
+    this.maxSizeBytes = 1000 * 1000,
   })  : assert(storageLocation != null),
         assert(scale != null),
         assert(maxSizeBytes != null);
