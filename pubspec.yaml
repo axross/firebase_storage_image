@@ -1,6 +1,6 @@
 name: firebase_storage_image
 description: A Flutter's ImageProvider for Firebase Cloud Storage.
-version: 0.0.4
+version: 0.1.0
 author: Kohei Asai <me@axross.io>
 homepage: https://github.com/axross/firebase_storage_image
 

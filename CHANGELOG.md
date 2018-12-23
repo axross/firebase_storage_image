@@ -1,3 +1,8 @@
+## [0.1.0] - 2018-12-23
+
+* Make the FirebaseStorageImage’s default constructor const
+* Change default allocated size from 2MB to 1MB
+
 ## [0.0.4] - 2018-12-23
 
 * Correcting pubspec.yaml
