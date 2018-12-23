@@ -27,7 +27,7 @@ class FirebaseStorageImage extends ImageProvider<FirebaseStorageImage> {
   /// Creates an object that fetches the image from Firebase Cloud Storage.
   ///
   /// [storageLocation] must be a [Uri] starting with `gs://`. [maxSizeBytes] is 1MB by default.
-  FirebaseStorageImage(
+  const FirebaseStorageImage(
     this.storageLocation, {
     this.scale = 1.0,
     this.maxSizeBytes = 1000 * 1000,
