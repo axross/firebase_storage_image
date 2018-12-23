@@ -11,11 +11,20 @@ import 'package:flutter/painting.dart'
         MultiFrameImageStreamCompleter,
         PaintingBinding;
 
+/// Fetches the given URL from Firebase Cloud Storage, associating it with the given scale.
 class FirebaseStorageImage extends ImageProvider<FirebaseStorageImage> {
+  /// The URL from which the image will be fetched.
   final Uri storageLocation;
+
+  /// The scale to place in the [ImageInfo] object of the image.
   final double scale;
+
+  /// The size which will be allocated.
   final int maxSizeBytes;
 
+  /// Creates an object that fetches the image from Firebase Cloud Storage.
+  ///
+  /// [storageLocation] must be a [Uri] starting with `gs://`. [maxSizeBytes] is 2MB by default.
   FirebaseStorageImage(
     this.storageLocation, {
     this.scale = 1.0,
