@@ -11,13 +11,16 @@ A Flutter's [ImageProvider](https://docs.flutter.io/flutter/painting/ImageProvid
 ### Example
 
 ```dart
+import 'package:flutter/material.dart';
 import 'package:firebase_storage_image/firebase_storage_image.dart';
 
-class YourCustomCircleAvatar {
+class YourCircleAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundImage: FirebaseStorageImage('gs://project-12345.appspot.com/path/to/file.png'),
+      backgroundImage: FirebaseStorageImage(
+        'gs://project-12345.appspot.com/path/to/avatar_image.png',
+      ),
     );
   }
 }
