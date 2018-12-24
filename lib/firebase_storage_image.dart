@@ -1,6 +1,7 @@
 library firebase_storage_image;
 
 import 'dart:ui' show Codec, hashValues;
+import 'package:firebase_core/firebase_core.dart' show FirebaseApp;
 import 'package:firebase_storage/firebase_storage.dart' show FirebaseStorage;
 import 'package:flutter/foundation.dart' show SynchronousFuture;
 import 'package:flutter/painting.dart'
@@ -24,16 +25,22 @@ class FirebaseStorageImage extends ImageProvider<FirebaseStorageImage> {
   /// The size which will be allocated.
   final int maxSizeBytes;
 
+  final FirebaseApp _firebaseApp;
+
   /// Creates an object that fetches the image from Firebase Cloud Storage.
   ///
-  /// [location] must be a [Uri] starting with `gs://`. [maxSizeBytes] is 1MB by default.
+  /// [location] must be a [Uri] starting with `gs://`.
+  /// [maxSizeBytes] is optional. 1MB by default.
+  /// [firebaseApp] is optional. By default, the initial firebase app will be used.
   const FirebaseStorageImage(
     this.location, {
     this.scale = 1.0,
     this.maxSizeBytes = 1000 * 1000,
+    FirebaseApp firebaseApp,
   })  : assert(location != null),
         assert(scale != null),
-        assert(maxSizeBytes != null);
+        assert(maxSizeBytes != null),
+        _firebaseApp = firebaseApp;
 
   @override
   Future<FirebaseStorageImage> obtainKey(ImageConfiguration configuration) =>
@@ -66,9 +73,10 @@ class FirebaseStorageImage extends ImageProvider<FirebaseStorageImage> {
   Future<Codec> _fetch(FirebaseStorageImage key) async {
     final uri = Uri.parse(key.location);
 
-    final storage = FirebaseStorage(storageBucket: _getBucketUrl(uri))
-        .ref()
-        .child(uri.path);
+    final storage = FirebaseStorage(
+      app: key._firebaseApp,
+      storageBucket: _getBucketUrl(uri),
+    ).ref().child(uri.path);
 
     final bytes = await storage.getData(key.maxSizeBytes);
 
