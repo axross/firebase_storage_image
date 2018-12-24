@@ -2,7 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/firebase_storage_image.svg)](https://pub.dartlang.org/packages/firebase_storage_image)
 
-A Flutter's [ImageProvider](https://docs.flutter.io/flutter/painting/ImageProvider-class.html) for [Firebase Cloud Storage](https://firebase.google.com/docs/storage/).
+Flutter's [ImageProvider](https://docs.flutter.io/flutter/painting/ImageProvider-class.html) for images in [Firebase Cloud Storage](https://firebase.google.com/docs/storage/).
 
 ## Getting Started
 
