@@ -6,20 +6,18 @@ A Flutter's [ImageProvider](https://docs.flutter.io/flutter/painting/ImageProvid
 
 ## Getting Started
 
-`FirebaseStorageImage` implements ImageProvider. You can use it directly for [Image](https://docs.flutter.io/flutter/widgets/Image-class.html), [CircleAvatar](https://docs.flutter.io/flutter/material/CircleAvatar-class.html), [ImageIcon](https://docs.flutter.io/flutter/widgets/ImageIcon-class.html), and something like that.
+`FirebaseStorageImage` implements [ImageProvider](https://docs.flutter.io/flutter/painting/ImageProvider-class.html). So you can use this directly for [Image](https://docs.flutter.io/flutter/widgets/Image-class.html), [CircleAvatar](https://docs.flutter.io/flutter/material/CircleAvatar-class.html), [ImageIcon](https://docs.flutter.io/flutter/widgets/ImageIcon-class.html), and something like that.
 
 ### Example
 
 ```dart
 import 'package:firebase_storage_image/firebase_storage_image.dart';
 
-final storageLocation = Uri.parse('gs://project-12345.appspot.com/path/to/file.png');
-
 class YourCustomCircleAvatar {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundImage: FirebaseStorageImage(storageLocation),
+      backgroundImage: FirebaseStorageImage('gs://project-12345.appspot.com/path/to/file.png'),
     );
   }
 }
