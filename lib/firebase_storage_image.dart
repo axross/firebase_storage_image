@@ -15,8 +15,8 @@ import 'package:flutter/painting.dart'
 ///
 /// By default this will allocate 1MB for download the image. If you want to deal with larger file than 1MB, you have to set `maxSizeBytes` with the proper value.
 class FirebaseStorageImage extends ImageProvider<FirebaseStorageImage> {
-  /// The URL from which the image will be fetched.
-  final Uri storageLocation;
+  /// The URL string from which the image will be fetched.
+  final String location;
 
   /// The scale to place in the [ImageInfo] object of the image.
   final double scale;
@@ -26,12 +26,12 @@ class FirebaseStorageImage extends ImageProvider<FirebaseStorageImage> {
 
   /// Creates an object that fetches the image from Firebase Cloud Storage.
   ///
-  /// [storageLocation] must be a [Uri] starting with `gs://`. [maxSizeBytes] is 1MB by default.
+  /// [location] must be a [Uri] starting with `gs://`. [maxSizeBytes] is 1MB by default.
   const FirebaseStorageImage(
-    this.storageLocation, {
+    this.location, {
     this.scale = 1.0,
     this.maxSizeBytes = 1000 * 1000,
-  })  : assert(storageLocation != null),
+  })  : assert(location != null),
         assert(scale != null),
         assert(maxSizeBytes != null);
 
@@ -54,21 +54,21 @@ class FirebaseStorageImage extends ImageProvider<FirebaseStorageImage> {
   bool operator ==(dynamic other) {
     if (other.runtimeType != runtimeType) return false;
     final FirebaseStorageImage typedOther = other;
-    return storageLocation == typedOther.storageLocation &&
-        scale == typedOther.scale;
+    return location == typedOther.location && scale == typedOther.scale;
   }
 
   @override
-  int get hashCode => hashValues(storageLocation, scale);
+  int get hashCode => hashValues(location, scale);
 
   @override
-  String toString() => '$runtimeType("$storageLocation", scale: $scale)';
+  String toString() => '$runtimeType("$location", scale: $scale)';
 
   Future<Codec> _fetch(FirebaseStorageImage key) async {
-    final storage =
-        FirebaseStorage(storageBucket: _getBucketUrl(key.storageLocation))
-            .ref()
-            .child(key.storageLocation.path);
+    final uri = Uri.parse(key.location);
+
+    final storage = FirebaseStorage(storageBucket: _getBucketUrl(uri))
+        .ref()
+        .child(uri.path);
 
     final bytes = await storage.getData(key.maxSizeBytes);
 
