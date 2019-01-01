@@ -1,0 +1,13 @@
+name: firebase_storage_image_example
+description: Example code of firebase_storage_image
+version: 0.0.0
+author: Kohei Asai <me@axross.io>
+homepage: https://github.com/axross/firebase_storage_image
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_storage_image: 
