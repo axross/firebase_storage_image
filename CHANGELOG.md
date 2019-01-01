@@ -1,3 +1,7 @@
+## [0.2.1] - 2018-12-31
+
+* Make all the code formatted by Dart's linter
+
 ## [0.2.0] - 2018-12-23
 
 * Breaking changes
