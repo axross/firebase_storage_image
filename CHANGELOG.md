@@ -1,3 +1,7 @@
+## [0.3.0] - 2019-05-30
+
+* Update dependencies (#7)
+
 ## [0.2.1] - 2018-12-31
 
 * Make all the code formatted by Dart's linter
