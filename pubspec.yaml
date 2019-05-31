@@ -6,6 +6,7 @@ homepage: https://github.com/axross/firebase_storage_image
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  flutter: ">=1.6.0"
 
 dependencies:
   flutter:

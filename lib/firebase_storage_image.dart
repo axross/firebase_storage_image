@@ -3,7 +3,7 @@ library firebase_storage_image;
 import 'dart:ui' show Codec, hashValues;
 import 'package:firebase_core/firebase_core.dart' show FirebaseApp;
 import 'package:firebase_storage/firebase_storage.dart' show FirebaseStorage;
-import 'package:flutter/foundation.dart' show SynchronousFuture;
+import 'package:flutter/foundation.dart' show SynchronousFuture, DiagnosticsProperty;
 import 'package:flutter/painting.dart'
     show
         ImageConfiguration,
@@ -51,16 +51,14 @@ class FirebaseStorageImage extends ImageProvider<FirebaseStorageImage> {
       SynchronousFuture<FirebaseStorageImage>(this);
 
   @override
-  ImageStreamCompleter load(FirebaseStorageImage key) {
-    return MultiFrameImageStreamCompleter(
-        codec: _fetch(key),
-        scale: key.scale,
-        informationCollector: (information) {
-          information
-            ..writeln('Image provider: $this')
-            ..write('Image key: $key');
-        });
-  }
+  ImageStreamCompleter load(FirebaseStorageImage key) =>
+      MultiFrameImageStreamCompleter(
+    codec: _fetch(key),
+    scale: key.scale,
+    informationCollector: () sync* {
+      yield DiagnosticsProperty<FirebaseStorageImage>('Image provider', this);
+      yield DiagnosticsProperty<FirebaseStorageImage>('Image key', key);
+    });
 
   @override
   bool operator ==(Object other) {
