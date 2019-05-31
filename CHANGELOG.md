@@ -1,3 +1,7 @@
+## [0.4.0] - 2019-05-30
+
+* Changed code for Flutter 1.6+ compatibility (#9)
+
 ## [0.3.0] - 2019-05-30
 
 * Update dependencies (#7)

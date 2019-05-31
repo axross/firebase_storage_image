@@ -1,6 +1,6 @@
 name: firebase_storage_image
 description: Flutter's ImageProvider to use images in Firebase Cloud Storage directly for Image, CircleAvatar, ImageIcon, and something like that.
-version: 0.3.0
+version: 0.4.0
 author: Kohei Asai <me@axross.io>
 homepage: https://github.com/axross/firebase_storage_image
 
